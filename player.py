@@ -1,4 +1,4 @@
-from constants import PLAYER_RADIUS, PLAYER_TURN_SPEED, PLAYER_SPEED
+from constants import PLAYER_RADIUS, PLAYER_TURN_SPEED, PLAYER_SPEED, LINE_WIDTH
 import pygame
 from circleshape import CircleShape
 
@@ -6,6 +6,9 @@ class Player(CircleShape):
     def __init__(self, x, y):
         super().__init__(x, y, PLAYER_RADIUS)
         self.rotation = 0
+
+    def draw(self, screen: pygame.Surface) -> None:
+        pygame.draw.polygon(screen, "white", self.triangle(), LINE_WIDTH)
     
     # in the Player class
     def triangle(self) -> list[pygame.Vector2]:
