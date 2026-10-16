@@ -33,7 +33,6 @@ def main():
 
         screen.fill("black")
 
-#        player.update(dt)
         updatable.update(dt)
 
         for asteroid in asteroids:
@@ -41,8 +40,12 @@ def main():
                 log_event("player_hit")
                 print("Game over !")
                 sys.exit()
+            for shot in shots:
+                if asteroid.collides_with(shot):
+                    log_event("asteroid_shot")
+                    asteroid.kill()
+                    shot.kill()
 
-#        player.draw(screen)
         for obj in drawable:
             obj.draw(screen)
 
